@@ -68,7 +68,6 @@ app.use(hpp());
 app.get("/", async (req, res) => {
   res.json({ message: "Please visit /api/v1/user to view all the users" });
 });
-
 app.use("/api/v1/course", courseRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/reviews", reviewRouter);
@@ -76,6 +75,11 @@ app.use("/api/v1/cart", cartRouter);
 app.use("/api/v1/order", oredrRouter);
 app.use("/api/v1/user", userRouter);
 
+app.use(errorHandler);
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 5000;
 app.use(errorHandler);
 
 let port = process.env.PORT;
