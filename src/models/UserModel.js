@@ -1,52 +1,59 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const userSchema = mongoose.Schema({
-    firstName:{
-        type:String,
-        Required:[true,"Please enter your first name"],
-        trim:true
+const userSchema = mongoose.Schema(
+  {
+    firstName: {
+      type: String,
+      Required: [true, "Please enter your first name"],
+      trim: true,
     },
-    lastName:{
-        type:String,
-        Required:[true,"Please enter your last name"],
-        trim:true
+    lastName: {
+      type: String,
+      Required: [true, "Please enter your last name"],
+      trim: true,
     },
-    userName:{
-        type:String,
-        Required:[true,"Please enter a user name"],
-        trim:true,
-        Unique:true
+    userName: {
+      type: String,
+      Required: [true, "Please enter a user name"],
+      trim: true,
+      Unique: true,
     },
-    email:{
-        type:String,
-        Required:true,
-        match:[/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,"Please enter a valid email address"],
-        unique:true
+    email: {
+      type: String,
+      Required: true,
+      match: [
+        /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+        "Please enter a valid email address",
+      ],
+      unique: true,
     },
-    password:{
-        type:String,
-        Required:true,
-        select:false
-    },role:{
-        type:String,
-        Required:true,
-        enum:["user","publisher","admin"],
-        default:"user"
+    password: {
+      type: String,
+      Required: true,
+      select: false,
     },
-    phoneNumber:{
-        type:String
+    role: {
+      type: String,
+      Required: true,
+      enum: ["user", "publisher", "admin"],
+      default: "user",
     },
-    displayPicture:{
-        type:String
+    phoneNumber: {
+      type: String,
     },
-    isSubscribed:{
-        type:Boolean,
-        default:false
+    displayPicture: {
+      type: String,
     },
-    resetToken:String,
-    resetTokenExpire:Date
-},{timestamps:true})
+    isSubscribed: {
+      type: Boolean,
+      default: false,
+    },
+    resetToken: String,
+    resetTokenExpire: Date,
+  },
+  { timestamps: true }
+);
 
-const User = mongoose.model("User",userSchema)
+const User = mongoose.model("User", userSchema);
 
-module.exports = User
+module.exports = User;
